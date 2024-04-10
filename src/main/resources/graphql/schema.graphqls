@@ -1,0 +1,58 @@
+type Query {
+    findAllUsers: [UsersT]
+    getUserByCedula(cedula: Int) : UsersT
+    findAllMedicine: [Medicine]
+    getMedicineById(nombre: String) : Medicine
+    findAllMascota: [Mascota]
+    getMascotaById(id: Int) : Mascota
+    
+}
+
+type Mutation {
+    saveUser( cedula: Int, nombres:String,
+    		 apellidos:String, direccion:String, telefono:String): UsersT
+    updateUser(cedula: Int, nombres:String,
+    		 apellidos:String, direccion:String, telefono:String): UsersT
+    deleteUser(cedula: Int): UsersT
+
+	
+	
+	saveMedicine( nombre: String, descripcion: String, dosis:String): Medicine
+    updateMedicine(id: Int, nombre:String,
+    		 descripcion:String, dosis:String): Medicine
+    deleteMedicine(id: Int): Medicine
+       
+	saveMascota(id: Int,nombre: String, edad: String, peso: String, raza: String,
+		idCliente: Int,idMedicamento: Int
+	 ): Mascota
+	updateMascota(id: Int,nombre: String, edad: String, peso: String, raza: String,
+		idCliente: Int,idMedicamento: Int
+	 ): Mascota
+	 
+    deleteMascota(id: Int): Mascota
+}
+
+
+type UsersT{
+	cedula: Int
+	nombres: String
+	apellidos: String 
+	direccion: String
+	telefono: String
+}
+
+type Mascota{
+	id: Int	
+    nombre: String
+    raza: String
+    edad: String
+    peso: String
+    cliente: UsersT
+    medicamento: Medicine
+}
+type Medicine{
+	id: Int
+	nombre: String
+	descripcion:String
+	dosis: String
+}
